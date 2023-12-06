@@ -22,7 +22,7 @@ while read -r name resourceGroup; do
 
         # 创建新的公共 IP 地址
         new_ip_name="${name}-publicIP-$(date +"%Y%m%d%H%M")"
-        az network public-ip create --resource-group $resourceGroup --name $new_ip_name --allocation-method Static
+        az network public-ip create --resource-group $resourceGroup --name $new_ip_name --allocation-method Static --sku Standard
 
         # 将新的公共 IP 地址关联到虚拟机
         az network nic ip-config update --name $ip_config_name --nic-name $nic_name --resource-group $resourceGroup --public-ip-address $new_ip_name
